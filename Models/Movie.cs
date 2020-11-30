@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 #nullable disable
 
@@ -14,19 +16,29 @@ namespace crud.Models
 
         public int Movieno { get; set; }
         public string Title { get; set; }
-        public short? Relyear { get; set; }
+        public int Relyear { get; set; }
         public short? Runtime { get; set; }
 
         public virtual ICollection<Casting> Castings { get; set; }
 
-        public int NumActors()
+        public int NumActors(MoviesContext context, int userInputMovie)
         {
-            return 1;
+
+            var sqlResult = context.Castings.Where(row => row.Movieno == userInputMovie);
+
+
+            return sqlResult.Count();
+
         }
 
-        public int GetAge()
+        public int GetAge(MoviesContext context, int userInputMovie2)
         {
-            return 1;
+            var sqlResultMovieAge = context.Movies.Where<Movie>(row => row.Movieno == userInputMovie2);
+
+
+            return 2020 - sqlResultMovieAge.FirstOrDefault().Relyear;  
         }
+
+        
     }
 }
