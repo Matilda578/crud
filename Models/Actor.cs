@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 #nullable disable
 
@@ -7,6 +9,8 @@ namespace crud.Models
 {
     public partial class Actor
     {
+        private object a;
+
         public Actor()
         {
             Castings = new HashSet<Casting>();
@@ -19,9 +23,10 @@ namespace crud.Models
 
         public virtual ICollection<Casting> Castings { get; set; }
 
-        public void setFullName()
+        public void setFullName(MoviesContext context)
         {
-
+           
+               
         }
     }
 }

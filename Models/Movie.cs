@@ -16,7 +16,7 @@ namespace crud.Models
 
         public int Movieno { get; set; }
         public string Title { get; set; }
-        public int Relyear { get; set; }
+        public short Relyear { get; set; }
         public short? Runtime { get; set; }
 
         public virtual ICollection<Casting> Castings { get; set; }
@@ -31,12 +31,31 @@ namespace crud.Models
 
         }
 
-        public int GetAge(MoviesContext context, int userInputMovie2)
+        public int GetAge(MoviesContext context, Int16 userInputMovie2)
         {
-            var sqlResultMovieAge = context.Movies.Where<Movie>(row => row.Movieno == userInputMovie2);
 
 
-            return 2020 - sqlResultMovieAge.FirstOrDefault().Relyear;  
+            
+            
+                var moviequery = from moviee in context.Movies
+                            where moviee.Movieno == userInputMovie2
+                            select moviee;
+
+                var moviequeryresult = moviequery.FirstOrDefault<Movie>();
+
+                Console.WriteLine(moviequeryresult.Relyear);
+
+                     
+
+            
+
+
+            //int mathvariable = Convert.ToInt32(2020) - Convert.ToInt32(sqlResultMovieAge.First().Relyear);
+
+
+
+            //var result = Convert.ToInt32(mathvariable);
+            return 2020 - moviequeryresult.Relyear;
         }
 
         
