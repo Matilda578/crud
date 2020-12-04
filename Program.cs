@@ -13,11 +13,11 @@ namespace crud
             var context = new MoviesContext();
             var Movieclass = new Movie();
 
-            ////Console.WriteLine("Please enter MovieNo: ");
-            ////var userMovieNo = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Please enter MovieNo: ");
+            var userMovieNo = Convert.ToInt32(Console.ReadLine());
 
-            ////var numberofActors = Movieclass.NumActors(context,userMovieNo);
-            ////Console.WriteLine(numberofActors);
+            var numberofActors = Movieclass.NumActors(context,userMovieNo);
+            Console.WriteLine(numberofActors);
 
 
             Console.WriteLine("To check a Movie's age please enter the Movie No: ");
@@ -31,7 +31,7 @@ namespace crud
             List<Movie> movieList = context.Movies.ToList();
             foreach (Movie moobie in movieList)
             {
-                Console.WriteLine(moobie.Title);
+                Console.WriteLine(moobie.Title, moobie.Runtime);
             }
 
 
@@ -44,9 +44,31 @@ namespace crud
             {
                 Console.WriteLine(mooovie.Title);
             }
-          //  var moviequeryresult = moviesearch.FirstOrDefault<Movie>();
 
-          //  Console.WriteLine(moviequeryresult.Relyear);
+
+
+            Console.WriteLine("Please enter Movie Title: ");
+            var userupdateMovieselection = Console.ReadLine();
+
+            Console.WriteLine("Please enter the new title for the movie: ");
+            var Movieuserupdatemovie = Console.ReadLine();
+
+
+            var moviequery2 = from Movie in context.Movies
+                              where Movie.Title.StartsWith(userupdateMovieselection)
+                              select Movie;
+
+            var moviequery2result = moviequery2.FirstOrDefault<Movie>();
+
+            moviequery2result.Title = Movieuserupdatemovie;
+            context.SaveChanges();
+
+            // Console.WriteLine(numberofActors);
+
+
+            //  var moviequeryresult = moviesearch.FirstOrDefault<Movie>();
+
+            //  Console.WriteLine(moviequeryresult.Relyear);
 
 
 
