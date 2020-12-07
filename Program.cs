@@ -63,12 +63,27 @@ namespace crud
             moviequery2result.Title = Movieuserupdatemovie;
             context.SaveChanges();
 
-            // Console.WriteLine(numberofActors);
+            ///b
+
+            Console.WriteLine("Please enter the actor's fullname: ");
+            var updateactorsname = Console.ReadLine();
+
+            Console.WriteLine("Please enter the new  first name for the actor: ");
+            var updateactorfirstname = Console.ReadLine();
+
+            Console.WriteLine("Please enter the new  SURNAME for the actor: ");
+            var updateactorsurname = Console.ReadLine();
 
 
-            //  var moviequeryresult = moviesearch.FirstOrDefault<Movie>();
+            var updateactornamequery = from Actor in context.Actors
+                              where Actor.Fullname.StartsWith(updateactorsname)
+                              select Actor;
 
-            //  Console.WriteLine(moviequeryresult.Relyear);
+          var updateactornamequeryresult = updateactornamequery.FirstOrDefault<Actor>();
+
+            updateactornamequeryresult.Givenname = updateactorfirstname;
+            updateactornamequeryresult.Surname = updateactorsurname;
+            context.SaveChanges();
 
 
 

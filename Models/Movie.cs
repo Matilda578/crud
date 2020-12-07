@@ -33,9 +33,7 @@ namespace crud.Models
 
         public int GetAge(MoviesContext context, Int16 userInputMovie2)
         {
-
-
-            
+ 
             
                 var moviequery = from moviee in context.Movies
                             where moviee.Movieno == userInputMovie2
@@ -44,18 +42,18 @@ namespace crud.Models
                 var moviequeryresult = moviequery.FirstOrDefault<Movie>();
 
                 Console.WriteLine(moviequeryresult.Relyear);
+           
+            ///add trycatch for less than 0 age   
 
-                     
 
-            
+            //var result = Convert.ToInt32(mathvariable);
+            return 2020 - moviequeryresult.Relyear;
 
 
             //int mathvariable = Convert.ToInt32(2020) - Convert.ToInt32(sqlResultMovieAge.First().Relyear);
 
 
 
-            //var result = Convert.ToInt32(mathvariable);
-            return 2020 - moviequeryresult.Relyear;
         }
 
         
