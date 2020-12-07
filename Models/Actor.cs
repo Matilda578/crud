@@ -26,7 +26,7 @@ namespace crud.Models
         public void setFullName(MoviesContext context)
         {
 
-            Actor =(Givenname, " ", Surname);
+            //Actor = (Givenname, " ", Surname);
         }
     }
 }
